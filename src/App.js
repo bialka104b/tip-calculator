@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./index.css";
+import { useState } from "react";
+import langEn from "./language/en.json";
+import langPL from "./language/pl.json";
+import { TipCalculator } from "./components/TipCalculator";
 
-function App() {
+export default function App() {
+  const [lang, setLang] = useState("PL");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <h1 className="rubik-bubbles-regular text-center text-[40px]">
+        Tip Calculator
+      </h1>
+      <div className="flex justify-end">
+        <select value={lang} onChange={(e) => setLang(e.target.value)}>
+          <option value="PL">PL</option>
+          <option value="EN">EN</option>
+        </select>
+      </div>
+      <TipCalculator langData={lang === "PL" ? langPL : langEn} />
     </div>
   );
 }
-
-export default App;
